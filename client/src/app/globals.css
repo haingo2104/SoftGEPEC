@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+
+.login{
+    width: 50%;
+}
+.hello{
+    width: 50%;
+}
+
+.sidebar {
+    position: relative;
+}
+
+.sidebar ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.sidebar:hover ul,
+.sidebar:focus-within ul {
+    display: block;
+}
+
+.loader {
+    border-top-color: #3498db;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

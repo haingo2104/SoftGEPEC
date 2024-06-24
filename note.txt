@@ -1,0 +1,122 @@
+objectif : 
+
+mande par profile : backend
+tri 
+note 
+
+filtre , note tsara amle competence
+
+
+miaraka amle filtre :
+note , coeff : note suivant pondération , total anle note suivant anle maintenant 
+
+moyenne generale :  atout inclus : 
+                    par rapport au ligne de competence : ze tsis anle croit (visé)
+
+visée : IT => mila mahay an ty
+atout : marketing => 
+
+
+
+
+Voici un exemple de code complet illustrant comment stocker et accéder à l'user_id dans différentes pages de votre application en utilisant Redux pour le state management :
+
+Définissez vos actions Redux, votre reducer et configurez le store Redux.
+javascript
+Copier le code
+// actions.js
+export const setUserId = (userId) => ({
+  type: 'SET_USER_ID',
+  payload: userId
+});
+
+// reducer.js
+const initialState = {
+  userId: null
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SET_USER_ID':
+      return {
+        ...state,
+        userId: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
+export default reducer;
+
+// store.js
+import { createStore } from 'redux';
+import reducer from './reducer';
+
+const store = createStore(reducer);
+
+export default store;
+Utilisez le store Redux dans votre application :
+javascript
+Copier le code
+// Login.js
+import { useDispatch } from 'react-redux';
+import { setUserId } from './actions';
+
+function Login() {
+    const dispatch = useDispatch();
+
+    async function handleLogin() {
+        // Votre logique de connexion
+        try {
+            // Votre logique de connexion
+            const { data } = await axios.post(`http://localhost:5236/api/login`, {
+                email: email.trim(),
+                password: password.trim()
+            }, {
+                withCredentials: true
+            });
+
+            // Récupérer l'`user_id` de la réponse de votre backend
+            const userId = data.userId;
+
+            // Stocker l'`user_id` dans le state global avec Redux
+            dispatch(setUserId(userId));
+
+            // Rediriger vers une autre page après la connexion
+            window.location.href = '/departments';
+        } catch (error) {
+            // Gérer les erreurs
+        }
+    }
+
+    return (
+        // Votre formulaire de connexion
+    );
+}
+
+export default Login;
+Accédez à l'user_id dans d'autres pages de votre application :
+javascript
+Copier le code
+// AutreComponent.js
+import { useSelector } from 'react-redux';
+
+function AutreComponent() {
+    // Accédez à l'`user_id` depuis le state global avec Redux
+    const userId = useSelector(state => state.userId);
+
+    // Utilisez l'`user_id` comme nécessaire
+
+    return (
+        // Votre composant
+    );
+}
+
+
+
+
+
+
+
+
